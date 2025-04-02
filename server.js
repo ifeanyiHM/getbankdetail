@@ -16,22 +16,49 @@ if (process.env.NODE_ENV === "development") {
 // Middleware to parse raw XML
 app.use(bodyParser.text({ type: "application/soap+xml" }));
 
-// Middleware for API key authentication
-const authenticate = (req, res, next) => {
-  const apiKey = req.headers["x-api-key"];
-  const validApiKey = process.env.API_KEY;
+// // Middleware for API key authentication
+// const authenticate = (req, res, next) => {
+//   const apiKey = req.headers["x-api-key"];
+//   const validApiKey = process.env.API_KEY;
 
-  if (!apiKey || apiKey !== validApiKey) {
-    return res.status(403).json({ error: "Unauthorized: Invalid API key" });
-  }
-  next();
-};
+//   if (!apiKey || apiKey !== validApiKey) {
+//     return res.status(403).json({ error: "Unauthorized: Invalid API key" });
+//   }
+//   next();
+// };
 
-// Serve WSDL file
+// Serve WSDL file at both /wsdl and /nameEnquiry
 app.get("/wsdl", (req, res) => {
   const wsdlPath = path.join(__dirname, "nameEnquiry.wsdl");
   res.header("Content-Type", "application/xml");
   res.sendFile(wsdlPath);
+});
+
+// Add this new route to serve the WSDL when accessed via /nameEnquiry?wsdl
+app.get("/nameEnquiry", (req, res) => {
+  if (req.query.wsdl !== undefined) {
+    // Read the WSDL template
+    let wsdlContent = fs.readFileSync(
+      path.join(__dirname, "nameEnquiry.wsdl"),
+      "utf8"
+    );
+
+    // Replace the service location based on environment
+    const serviceLocation =
+      process.env.NODE_ENV === "production"
+        ? "https://getbankdetail.vercel.app/nameEnquiry"
+        : "http://localhost:3001/nameEnquiry";
+
+    wsdlContent = wsdlContent.replace(
+      /<soap:address location="[^"]*"/,
+      `<soap:address location="${serviceLocation}"`
+    );
+
+    res.header("Content-Type", "application/xml");
+    res.send(wsdlContent);
+  } else {
+    res.status(404).send("Not Found");
+  }
 });
 
 const logResponseToFile = (response) => {
@@ -48,7 +75,8 @@ const logResponseToFile = (response) => {
 };
 
 // Route to handle the SOAP request
-app.post("/nameEnquiry", authenticate, async (req, res) => {
+// app.post("/nameEnquiry", authenticate, async (req, res) => {
+app.post("/nameEnquiry", async (req, res) => {
   try {
     const parser = new xml2js.Parser({ explicitArray: false });
     const xmlBuilder = new xml2js.Builder();

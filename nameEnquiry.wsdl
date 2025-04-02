@@ -94,7 +94,7 @@
 
   <wsdl:service name="NameEnquiryService">
     <wsdl:port name="NameEnquiryPort" binding="isw:NameEnquiryBinding">
-      <soap:address location="http://techquest.interswitchng.com/nameenquiry"/>
+      <soap:address location="http://localhost:3001/nameEnquiry"/>
     </wsdl:port>
   </wsdl:service>
 
