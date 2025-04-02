@@ -1,0 +1,74 @@
+
+[2025-04-02T02:21:03.217Z] Response:
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:isw="http://techquest.interswitchng.com/nameenquiry/">
+  <soap:Body>
+    <isw:NameEnquiryResponse>
+      <isw:ResponseCode>00</isw:ResponseCode>
+      <isw:CustomerID>1000018118</isw:CustomerID>
+      <isw:CustomerName>
+        <isw:LastName>NASHON</isw:LastName>
+        <isw:FirstName>CAROLINE</isw:FirstName>
+        <isw:OtherNames/>
+      </isw:CustomerName>
+      <isw:CustomerAddress>
+        <isw:AddrLine1>ADAMAWA HOMES &amp; SAVINGS LTD</isw:AddrLine1>
+        <isw:AddrLine2/>
+        <isw:City>002</isw:City>
+        <isw:StateCode>002</isw:StateCode>
+        <isw:PostalCode/>
+      </isw:CustomerAddress>
+      <isw:CustomerPhoneNo>2348036280034</isw:CustomerPhoneNo>
+      <isw:AccountType>N/A</isw:AccountType>
+      <isw:AccountCurrency>566</isw:AccountCurrency>
+      <isw:CountryCode>000</isw:CountryCode>
+      <isw:Identification>
+        <isw:IdType>BVN</isw:IdType>
+        <isw:IdNumber>22210599792</isw:IdNumber>
+        <isw:CountryOfIssue>NIGERIA</isw:CountryOfIssue>
+        <isw:ExpiryDate>01/01/1990</isw:ExpiryDate>
+      </isw:Identification>
+      <isw:Nationality>NIGERIA</isw:Nationality>
+      <isw:DOB>03/10/1979</isw:DOB>
+      <isw:CountryOfBirth>NIGERIA</isw:CountryOfBirth>
+    </isw:NameEnquiryResponse>
+  </soap:Body>
+</soap:Envelope>
+----------------------------------------
+
+[2025-04-02T02:21:56.139Z] Response:
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:isw="http://techquest.interswitchng.com/nameenquiry/">
+  <soap:Body>
+    <isw:NameEnquiryResponse>
+      <isw:ResponseCode>00</isw:ResponseCode>
+      <isw:CustomerID>1000018118</isw:CustomerID>
+      <isw:CustomerName>
+        <isw:LastName>NASHON</isw:LastName>
+        <isw:FirstName>CAROLINE</isw:FirstName>
+        <isw:OtherNames/>
+      </isw:CustomerName>
+      <isw:CustomerAddress>
+        <isw:AddrLine1>ADAMAWA HOMES &amp; SAVINGS LTD</isw:AddrLine1>
+        <isw:AddrLine2/>
+        <isw:City>002</isw:City>
+        <isw:StateCode>002</isw:StateCode>
+        <isw:PostalCode/>
+      </isw:CustomerAddress>
+      <isw:CustomerPhoneNo>2348036280034</isw:CustomerPhoneNo>
+      <isw:AccountType>N/A</isw:AccountType>
+      <isw:AccountCurrency>566</isw:AccountCurrency>
+      <isw:CountryCode>000</isw:CountryCode>
+      <isw:Identification>
+        <isw:IdType>BVN</isw:IdType>
+        <isw:IdNumber>22210599792</isw:IdNumber>
+        <isw:CountryOfIssue>NIGERIA</isw:CountryOfIssue>
+        <isw:ExpiryDate>01/01/1990</isw:ExpiryDate>
+      </isw:Identification>
+      <isw:Nationality>NIGERIA</isw:Nationality>
+      <isw:DOB>03/10/1979</isw:DOB>
+      <isw:CountryOfBirth>NIGERIA</isw:CountryOfBirth>
+    </isw:NameEnquiryResponse>
+  </soap:Body>
+</soap:Envelope>
+----------------------------------------
