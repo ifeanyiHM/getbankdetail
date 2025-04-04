@@ -1,0 +1,75 @@
+// 1. Require dependencies at top
+const xml2js = require('xml2js');
+const xmlBuilder = new xml2js.Builder(); // Define this globally
+
+// 2. Proper body parser configuration
+app.use(bodyParser.raw({
+  type: ['application/soap+xml', 'text/xml'],
+  limit: '5mb'
+}));
+
+// 3. Enhanced SOAP endpoint
+app.post("/nameEnquiry", async (req, res) => {
+  try {
+    // Ensure we have a buffer
+    if (!req.body || req.body.length === 0) {
+      throw new Error("Empty SOAP request received");
+    }
+
+    // Convert buffer to string
+    const xmlString = req.body.toString('utf8').trim();
+    console.log("Raw XML request:", xmlString);
+
+    // Validate basic XML structure
+    if (!xmlString.startsWith('<') || !xmlString.includes('Envelope')) {
+      throw new Error("Invalid SOAP XML format");
+    }
+
+    // Parse XML
+    const parser = new xml2js.Parser({
+      explicitArray: false,
+      trim: true,
+      normalize: true
+    });
+
+    const parsedRequest = await parser.parseStringPromise(xmlString);
+    
+    // Extract CustomerID (updated path based on your WSDL)
+    const customerID = parsedRequest['soap:Envelope']?.['soap:Body']?.['isw:NameEnquiryRequest']?.['isw:CustomerID'];
+    
+    if (!customerID) {
+      throw new Error("Missing CustomerID in request");
+    }
+
+    // ... rest of your existing logic ...
+
+  } catch (error) {
+    console.error("SOAP Error:", error.message);
+    
+    // Build proper SOAP fault
+    const fault = {
+      'soap:Envelope': {
+        '$': {
+          'xmlns:soap': 'http://www.w3.org/2003/05/soap-envelope'
+        },
+        'soap:Body': {
+          'soap:Fault': {
+            'faultcode': 'soap:Client',
+            'faultstring': error.message
+          }
+        }
+      }
+    };
+
+    res.status(500)
+       .header('Content-Type', 'application/soap+xml')
+       .send(xmlBuilder.buildObject(fault));
+  }
+});
+
+
+
+
+
+
+curl -X POST http://localhost:3001/nameEnquiry -H "Content-Type: text/xml;charset=UTF-8" -H "SOAPAction: http://techquest.interswitchng.com/nameenquiry/NameEnquiry" -d "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:isw=\"http://techquest.interswitchng.com/nameenquiry/\"><soapenv:Header/><soapenv:Body><isw:NameEnquiryRequest><isw:CustomerID>1000018118</isw:CustomerID></isw:NameEnquiryRequest></soapenv:Body></soapenv:Envelope>"

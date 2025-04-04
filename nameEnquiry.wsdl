@@ -94,8 +94,112 @@
 
   <wsdl:service name="NameEnquiryService">
     <wsdl:port name="NameEnquiryPort" binding="isw:NameEnquiryBinding">
-      <soap:address location="http://localhost:3001/nameEnquiry"/>
+      <soap:address location="http://127.0.0.1:3001/nameEnquiry"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
+
+
+
+<!-- 
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:isw="http://techquest.interswitchng.com/nameenquiry/"
+                  name="NameEnquiryService"
+                  targetNamespace="http://techquest.interswitchng.com/nameenquiry/">
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://techquest.interswitchng.com/nameenquiry/">
+      <xsd:element name="NameEnquiryRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="CustomerID" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="NameEnquiryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ResponseCode" type="xsd:string"/>
+            <xsd:element name="CustomerID" type="xsd:string"/>
+            <xsd:element name="CustomerName">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="LastName" type="xsd:string"/>
+                  <xsd:element name="FirstName" type="xsd:string"/>
+                  <xsd:element name="OtherNames" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CustomerAddress">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="AddrLine1" type="xsd:string"/>
+                  <xsd:element name="AddrLine2" type="xsd:string" minOccurs="0"/>
+                  <xsd:element name="City" type="xsd:string"/>
+                  <xsd:element name="StateCode" type="xsd:string"/>
+                  <xsd:element name="PostalCode" type="xsd:string"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CustomerPhoneNo" type="xsd:string"/>
+            <xsd:element name="AccountType" type="xsd:string"/>
+            <xsd:element name="AccountCurrency" type="xsd:string"/>
+            <xsd:element name="CountryCode" type="xsd:string"/>
+            <xsd:element name="Identification">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="IdType" type="xsd:string"/>
+                  <xsd:element name="IdNumber" type="xsd:string"/>
+                  <xsd:element name="CountryOfIssue" type="xsd:string"/>
+                  <xsd:element name="ExpiryDate" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Nationality" type="xsd:string"/>
+            <xsd:element name="DOB" type="xsd:string"/>
+            <xsd:element name="CountryOfBirth" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="NameEnquiryRequestMessage">
+    <wsdl:part name="parameters" element="isw:NameEnquiryRequest"/>
+  </wsdl:message>
+  
+  <wsdl:message name="NameEnquiryResponseMessage">
+    <wsdl:part name="parameters" element="isw:NameEnquiryResponse"/>
+  </wsdl:message>
+
+  <wsdl:portType name="NameEnquiryPortType">
+    <wsdl:operation name="NameEnquiry">
+      <wsdl:input message="isw:NameEnquiryRequestMessage"/>
+      <wsdl:output message="isw:NameEnquiryResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="NameEnquiryBinding" type="isw:NameEnquiryPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="NameEnquiry">
+      <soap:operation soapAction="http://techquest.interswitchng.com/nameenquiry/NameEnquiry"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="NameEnquiryService">
+    <wsdl:port name="NameEnquiryPort" binding="isw:NameEnquiryBinding">
+      <soap:address location="http://127.0.0.1:3001/nameEnquiry"/>
     </wsdl:port>
   </wsdl:service>
 
-</wsdl:definitions>
+</wsdl:definitions> -->
